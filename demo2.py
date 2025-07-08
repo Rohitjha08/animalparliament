@@ -178,7 +178,7 @@ class HybridScraper:
 
 
 async def scrape_and_analyze_news(progress_callback=None):
-    gemini_api_key = os.getenv("GEMINI_API_KEY")
+    gemini_api_key = st.secrets("GEMINI_API_KEY")
     analyzer = GeminiAnalyzer(api_key=gemini_api_key)
 
     scraper = HybridScraper()
@@ -226,8 +226,8 @@ async def scrape_and_analyze_news(progress_callback=None):
 
 
 def send_custom_email(bill_title, summary, ministry, link, receiver_email, custom_text=""):
-    sender_email = os.getenv("SMTP_USER")
-    password = os.getenv("SMTP_PASS")
+    sender_email = st.secrets("SMTP_USER")
+    password =  st.secrets("SMTP_PASS")
 
     if not sender_email or not password:
         return "SMTP credentials not set in .env. Cannot send email."
@@ -272,7 +272,7 @@ A new bill has been identified that may impact animal welfare or agriculture.
 
 st.set_page_config(layout="wide", page_title="Animal Welfare News Analyzer")
 
-st.title("🐾 Animal Welfare News Scraper & Analyzer")
+st.title("🐾 Animal Welfare Law News Scraper & Analyzer")
 st.markdown("---")
 
 if 'scraped_data' not in st.session_state:
@@ -334,7 +334,7 @@ if st.session_state.scraped_data:
 
             st.markdown("---")
             st.subheader("📧 Send Email Alert for this Article")
-            receiver_email = st.text_input("Receiver Email:", "your_email@example.com")
+            receiver_email = st.text_input("Receiver Email:", "Info@petaindia.org")
             custom_message = st.text_area("Add a custom message to the email (optional):")
 
             if st.button("Send Email"):

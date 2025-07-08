@@ -5,3 +5,5 @@ newspaper3k
 google-generativeai
 python-dotenv
 tqdm
+lxml
+lxml_html_clean
