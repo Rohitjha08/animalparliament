@@ -1,0 +1,7 @@
+streamlit
+requests
+beautifulsoup4
+newspaper3k
+google-generativeai
+python-dotenv
+tqdm
